@@ -4,10 +4,10 @@ class Database{
 	private $username="root"; // set username
 	private $password="mysql"; // set password
 	private $database="my_db"; // set database name
-	private $DbCon;
+	private $DbCon; 
 	
 	
-	public function connect(){
+	public function connect(){ // database connection function
 		$con = new mysqli($this->host,$this->username,$this->password,$this->database);
 		
 		if($con){
@@ -17,7 +17,8 @@ class Database{
 			return false;
 		}
 	}
-	public function select($table , $row = "*" , $where= null , $order=null){
+	// select data form database
+	public function select($table , $row = "*" , $where= null , $order=null){ 
 		$query='SELECT '.$row.' FROM '.$table;
 		if($where!=null){
 			$query.=' WHERE '.$where;
@@ -31,6 +32,7 @@ class Database{
 		return $Result;
 
 	}
+	// insert into table
 	public function insert($table,$value,$row=null){
 		$insert= " INSERT INTO ".$table;
 		if($row!=null){
@@ -50,6 +52,7 @@ class Database{
 			return false;
 		}
 	}
+	// delete record from table
 	public function delete($table,$where=null){
 		if($where == null)
             {
@@ -66,6 +69,7 @@ class Database{
 				return false;
 			}
 	}
+	// update existing record from table
 	public function update($table,$rows,$where){
 		 // Parse the where values
             // even values (including 0) contain the where rows
